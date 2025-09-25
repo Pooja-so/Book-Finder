@@ -1,6 +1,8 @@
-// Context for managing and providing global book search state and actions.
-// Uses the custom useBookSearch hook to encapsulate API fetching, loading state, and search functionality.
-// Allows any component in the app tree to access books, loading status, and the searchBooks function.
+/*
+  BookContext.jsx - Provides global state for the Book Finder app.
+  Uses the custom hook useBookSearch to manage books, loading, and search functionality.
+  Enables access to book data across the application via React Context.
+*/
 
 import React, { createContext } from "react";
 import { useBookSearch } from "../hooks/useBookSearch";
@@ -8,6 +10,7 @@ import { useBookSearch } from "../hooks/useBookSearch";
 export const BookContext = createContext();
 
 export const BookProvider = ({ children }) => {
+  // Destructure books, loading, and search function from custom hook
   const { books, loading, searchBooks } = useBookSearch();
 
   return (

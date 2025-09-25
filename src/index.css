@@ -1,1 +1,5 @@
 @import "tailwindcss";
+/* Global page styles */
+body {
+  background-color: #f3f4f6; /* equivalent to Tailwind bg-gray-100 */
+}

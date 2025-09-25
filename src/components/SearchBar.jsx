@@ -1,41 +1,96 @@
-// Search input component.
-// Captures user's query and triggers searchBooks function from the context.
+/*
+  SearchBar.jsx - Compact search bar with filter toggle on the right.
+  Clean UI with advanced filters displayed below in a flex-column layout.
+*/
 
 import React, { useState, useContext } from "react";
-import { BookContext } from "../context/BookContext"; // Access global search function
-import { Search } from "lucide-react"; // Icon for search button
+import { BookContext } from "../context/BookContext";
+import { Search, Sliders } from "lucide-react";
 
 const SearchBar = () => {
-  const [query, setQuery] = useState(""); // Local state to track input text
-  const { searchBooks } = useContext(BookContext); // Extract search function from context
+  const { searchBooks } = useContext(BookContext);
 
-  // Handle form submission
+  const [query, setQuery] = useState(""); // Combined title/author input
+  const [showFilters, setShowFilters] = useState(false); // Toggle for advanced filters
+  const [year, setYear] = useState(""); // Filter: first publish year
+  const [language, setLanguage] = useState(""); // Filter: language code
+  const [hasFullText, setHasFullText] = useState(false); // Filter: full-text availability
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload
-    searchBooks(query); // Trigger API search with current input
+    e.preventDefault();
+    searchBooks({
+      title: query,
+      author: query,
+      year,
+      language,
+      hasFullText,
+    });
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex justify-center gap-2 mt-6 w-full max-w-md mx-auto"
+      className="flex flex-col gap-3 mt-6 max-w-lg mx-auto p-4 bg-white rounded-xl shadow"
     >
-      {/* Text input for book title */}
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)} // Update query on each keystroke
-        placeholder="Search for books..."
-        className="flex-1 border rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-blue-500"
-      />
+      {/* Search Input + Filter Toggle */}
+      <div className="flex items-center gap-2">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by title or author"
+          className="flex-grow border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-1 text-sm"
+        >
+          <Search size={16} /> Search
+        </button>
 
-      {/* Search button with icon */}
-      <button
-        type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 flex items-center gap-1"
-      >
-        <Search size={18} /> Search
-      </button>
+        {/* Filter Toggle Button */}
+        <button
+          type="button"
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center gap-1 text-gray-700 px-3 py-2 border rounded-lg hover:bg-gray-100 text-sm"
+        >
+          <Sliders size={16} /> Filters
+        </button>
+      </div>
+
+      {/* Advanced Filters Panel */}
+      {showFilters && (
+        <div className="flex flex-col gap-3 mt-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+          {/* Row 1: Year and Language */}
+          <div className="flex flex-wrap gap-3 justify-evenly">
+            <input
+              type="number"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              placeholder="First publish year"
+              className="border rounded-lg px-3 py-2 w-1.2/3 text-sm focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="text"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              placeholder="Language code (eng, fre)"
+              className="border rounded-lg px-3 py-2 w-1.2/3 text-sm focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Row 2: Full-text checkbox */}
+          <label className="flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={hasFullText}
+              onChange={(e) => setHasFullText(e.target.checked)}
+              className="w-4 h-4"
+            />
+            Full-text only
+          </label>
+        </div>
+      )}
     </form>
   );
 };
