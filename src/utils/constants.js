@@ -1,0 +1,26 @@
+// Mapping of Open Library language codes to human-readable names
+export const languageMap = {
+  "eng": "English",
+  "fre": "French",
+  "ger": "German",
+  "spa": "Spanish",
+  "ita": "Italian",
+  "por": "Portuguese",
+  "rus": "Russian",
+  "jpn": "Japanese",
+  "chi": "Chinese",
+  "ara": "Arabic",
+  "hin": "Hindi",
+  "kor": "Korean",
+  "lat": "Latin",
+  "swe": "Swedish",
+  "nor": "Norwegian",
+  "dan": "Danish",
+  "fin": "Finnish",
+  "tur": "Turkish",
+  "heb": "Hebrew",
+  "pol": "Polish",
+  "ces": "Czech",
+  "ell": "Greek",
+  // Add more codes as needed
+};
