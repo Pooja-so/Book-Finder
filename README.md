@@ -7,8 +7,7 @@ The app provides a clean UI, smooth interactions, and an intuitive browsing expe
 ---
 
 ## 🌐 Deployed Link
-[🔗 Live Demo](https://your-deployed-link.com)  
-*(Replace with your actual deployed URL once hosted)*
+[🔗 Live Demo](https://lvzv6f-5173.csb.app/)  
 
 ---
 
