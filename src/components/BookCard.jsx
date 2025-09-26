@@ -43,7 +43,7 @@ const BookCard = ({ book }) => {
         <img
           src={coverUrl}
           alt={title || "Book cover"}
-          className="w-full h-64 sm:h-72 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-60 sm:h-72 object-cover transition-transform duration-300 group-hover:scale-105"
           onError={handleImageError}
           loading="lazy"
         />

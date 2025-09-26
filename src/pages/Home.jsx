@@ -36,7 +36,8 @@ const Home = () => {
       {/* Footer with glass-morphism effect */}
       <footer className="bg-white/80 backdrop-blur-lg border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center text-gray-600">
-          <p>Powered by Open Library API • Built with React & Tailwind CSS</p>
+          <p>Powered by Open Library API </p>
+          <p className="font-bold"> Made by Pooja Singh</p>
         </div>
       </footer>
     </div>

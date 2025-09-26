@@ -22,7 +22,7 @@ const SearchBar = () => {
     
  // Validate input to avoid empty queries
  if (!query || !query.trim()) {
-  toast.error("Please enter title or author for search.");
+  toast.error("Please enter a book title or author to start your search.");
   return;
 }
     searchBooks({
