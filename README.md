@@ -69,12 +69,10 @@ Book-Finder/
 │   ├── pages/
 │   │   └── Home.jsx
 │   ├── utils/
-│   │   └── constants.js
-│   └── styles/
-│       └── (if you have custom CSS or tailwind config overrides)
+│       └── constants.js
+│   
 ├── README.md
 ├── package.json
-├── tailwind.config.js
 ├── vite.config.js
 └── node_modules/
 ```
