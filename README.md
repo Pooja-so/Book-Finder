@@ -4,10 +4,13 @@ Book Finder is a **modern and responsive book search web application** built wit
 It allows users to explore the **Open Library** database, search books by **title** or **author**, and refine results using **advanced filters** like publish year, language, and full-text availability.
 
 ---
-
 ## 🌐 Live Demo
 [Book Finder – Try It Here](https://lvzv6f-5173.csb.app/)
+---
 
+---
+Chatgpt Conversion:
+[Chatgpt Link][https://chatgpt.com/share/68d66497-c9ac-8004-b759-320762c822fa]
 ---
 
 ## 🚀 Tech Stack
