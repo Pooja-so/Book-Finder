@@ -1,11 +1,12 @@
 /*
-  SearchBar.jsx - Compact search bar with filter toggle on the right.
-  Clean UI with advanced filters displayed below in a flex-column layout.
+  SearchBar.jsx - Enhanced search bar with modern design and improved UX.
+  Features gradient buttons, better spacing, animated filter panel, and enhanced form validation.
 */
 
 import React, { useState, useContext } from "react";
 import { BookContext } from "../context/BookContext";
-import { Search, Sliders } from "lucide-react";
+import { Search, Sliders, CheckCircle } from "lucide-react";
+import {toast} from 'react-toastify';
 
 const SearchBar = () => {
   const { searchBooks } = useContext(BookContext);
@@ -18,89 +19,152 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+ // Validate input to avoid empty queries
+ if (!query || !query.trim()) {
+  toast.error("Please enter title or author for search.");
+  return;
+}
     searchBooks({
-      title: query,
-      author: query,
+      query,
       year,
       language,
       hasFullText,
     });
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-3 mt-6 max-w-lg mx-auto p-4 bg-white rounded-xl shadow"
-    >
-      {/* Search Input + Filter Toggle */}
-      <div className="flex items-center gap-2">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by title or author"
-          className="flex-grow border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-1 text-sm cursor-pointer"
-        >
-          <Search size={16} /> Search
-        </button>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="space-y-6">
+        {/* Main Search Interface */}
+        <div className="relative">
+          <div className="flex gap-3">
+            {/* Search Input with Icon */}
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyPress}
+                placeholder="Search by title or author..."
+                className="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 bg-white shadow-sm placeholder-gray-400"
+              />
+            </div>
 
-        {/* Filter Toggle Button */}
-        <button
-          type="button"
-          onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-1 text-gray-700 px-3 py-2 border rounded-lg hover:bg-gray-100 text-sm cursor-pointer"
-        >
-          <Sliders size={16} /> Filters
-        </button>
-      </div>
-
-      {/* Advanced Filters Panel */}
-      {showFilters && (
-        <div className="flex flex-col gap-3 mt-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
-          {/* Row 1: Year and Language */}
-          <div className="flex flex-wrap gap-3 justify-evenly">
-            <input
-              type="number"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              placeholder="First publish year"
-              className="border rounded-lg px-3 py-2 w-1.2/3 text-sm focus:ring-2 focus:ring-blue-500"
-            />
-            {/* Language Dropdown */}
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              className="border rounded-lg px-3 py-2 w-40 text-sm focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            {/* Search Button with Gradient */}
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-700 hover:to-purple-700 focus:ring-4 focus:ring-indigo-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
             >
-              <option value="">Select language</option>
-              <option value="eng">English</option>
-              <option value="fre">French</option>
-              <option value="spa">Spanish</option>
-              <option value="ger">German</option>
-              <option value="ita">Italian</option>
-              <option value="hin">Hindi</option>
-              <option value="jpn">Japanese</option>
-              <option value="chi">Chinese</option>
-            </select>
-          </div>
+              <Search size={20} />
+              <span className="hidden sm:inline">Search</span>
+            </button>
 
-          {/* Row 2: Full-text checkbox */}
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={hasFullText}
-              onChange={(e) => setHasFullText(e.target.checked)}
-              className="w-4 h-4"
-            />
-            Full-text only
-          </label>
+            {/* Filter Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setShowFilters(!showFilters)}
+              className={`cursor-pointer px-4 py-4 border-2 rounded-2xl transition-all duration-200 flex items-center gap-2 font-medium ${
+                showFilters
+                  ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                  : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+              }`}
+            >
+              <Sliders size={20} />
+              <span className="hidden sm:inline">Filters</span>
+            </button>
+          </div>
         </div>
-      )}
-    </form>
+
+        {/* Advanced Filters Panel with Animation */}
+        {showFilters && (
+          <div className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg animate-in slide-in-from-top-2 duration-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <Sliders size={20} className="text-indigo-600" />
+              Advanced Filters
+            </h3>
+
+            {/* Filter Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Publication Year Filter */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Publication Year
+                </label>
+                <input
+                  type="number"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  placeholder="e.g., 2020"
+                  min="1000"
+                  max="2025"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-colors"
+                />
+              </div>
+
+              {/* Language Filter */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Language
+                </label>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-colors bg-white cursor-pointer"
+                >
+                  <option value="">All Languages</option>
+                  <option value="eng">English</option>
+                  <option value="fre">French</option>
+                  <option value="spa">Spanish</option>
+                  <option value="ger">German</option>
+                  <option value="ita">Italian</option>
+                  <option value="hin">Hindi</option>
+                  <option value="jpn">Japanese</option>
+                  <option value="chi">Chinese</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Full-text Checkbox */}
+            <div className="mt-4">
+              <label className="flex items-center gap-3 text-sm font-medium text-gray-700 cursor-pointer p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={hasFullText}
+                  onChange={(e) => setHasFullText(e.target.checked)}
+                  className="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                />
+                <CheckCircle size={18} className="text-emerald-500" />
+                Show only books with full-text available
+              </label>
+            </div>
+
+            {/* Clear Filters Button */}
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <button
+                type="button"
+                onClick={() => {
+                  setYear("");
+                  setLanguage("");
+                  setHasFullText(false);
+                }}
+                className="text-sm text-gray-500 hover:text-gray-700 font-medium transition-colors"
+              >
+                Clear all filters
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

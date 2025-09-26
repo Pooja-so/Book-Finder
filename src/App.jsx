@@ -4,8 +4,8 @@
 import React from "react";
 import Home from "./pages/Home"; // Main page of the app
 import { BookProvider } from "./context/BookContext"; // Context provider for global state
-import { ToastContainer } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -19,6 +19,7 @@ const App = () => {
         newestOnTop
         closeOnClick
         pauseOnHover
+        className="toast-container"
       />
     </BookProvider>
   );

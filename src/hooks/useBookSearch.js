@@ -1,62 +1,56 @@
 /*
-  useBookSearch.js - Custom hook to manage book search functionality.
-  Handles API calls to Open Library, loading state, and error handling.
-  Accepts search parameters including title, author, and optional filters.
+  useBookSearch.js
+  -----------------
+  Custom hook containing the Open Library API search logic.
+  Accepts state setters for books, loading, and error to keep it reusable.
 */
-
-import { useState } from "react";
 import { toast } from "react-toastify";
 
-export const useBookSearch = () => {
-  const [books, setBooks] = useState([]);       // Stores the fetched books
-  const [loading, setLoading] = useState(false); // Tracks loading state during API call
+export const useBookSearch = (setBooks, setLoading, setError) => {
+  // Handles searching books with provided filters
+  const searchBooks = async ({ query, year, language, hasFullText }) => {
 
-  // Function to search books with optional filters
-  const searchBooks = async ({
-    title = "",
-    author = "",
-    year = "",
-    language = "",
-    hasFullText = false
-  }) => {
-    // Prevent empty search
-    if (!title.trim() && !author.trim()) {
-      toast.error("Please enter a title or author to search.");
-      return;
-    }
-
-    setLoading(true); // Set loading true while fetching data
-
-    // Build query parameters dynamically
-    let query = [];
-    if (title) query.push(`title=${encodeURIComponent(title)}`);
-    if (author) query.push(`author=${encodeURIComponent(author)}`);
-    if (year) query.push(`first_publish_year=${year}`);
-    if (language) query.push(`language=${language}`);
-    if (hasFullText) query.push(`has_fulltext=true`);
-
-    const apiUrl = `https://openlibrary.org/search.json?${query.join("&")}`;
+    setLoading(true);
+    setError(null);
 
     try {
-      const res = await fetch(apiUrl);
-      if (!res.ok) throw new Error("Failed to fetch books");
+      let url = 'https://openlibrary.org/search.json?';
+      const params = new URLSearchParams();
 
-      const data = await res.json();
+      // Use general search parameter that searches across title, author, and other fields
+      params.append('q', query.trim());
+      if (year) params.append('first_publish_year', year);
+      if (language) params.append('language', language);
+      if (hasFullText) params.append('has_fulltext', 'true');
 
-      // Handle no results
-      if (!data.docs || data.docs.length === 0) {
-        toast.info("No books found. Try different filters.");
-        setBooks([]);
+      // Add a limit for better performance
+      url += params.toString() + '&limit=24';
+
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Handle successful response
+      if (data.docs && data.docs.length > 0) {
+        setBooks(data.docs);
+        toast.success(`Found ${data.docs.length} books!`);
       } else {
-        setBooks(data.docs.slice(0, 20)); // Limit results to 20
+        setBooks([]);
+        toast.info('No books found. Try different search terms.');
       }
     } catch (err) {
-      toast.error("Something went wrong. Please try again later.");
+      console.error('Search error:', err);
+      setError('Failed to fetch books. Please check your connection and try again.');
+      toast.error('Search failed. Please try again.');
+      setBooks([]);
     } finally {
-      setLoading(false); // Stop loading once fetch completes
+      setLoading(false);
     }
   };
 
-  // Return books, loading state, and search function
-  return { books, loading, searchBooks };
+  return { searchBooks };
 };

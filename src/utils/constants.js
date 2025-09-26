@@ -1,26 +1,38 @@
-// Mapping of Open Library language codes to human-readable names
+/*
+  constants.js - Application constants and configuration.
+  Contains language mappings and other shared constants.
+*/
+
+// Language code to readable name mapping
 export const languageMap = {
-  "eng": "English",
-  "fre": "French",
-  "ger": "German",
-  "spa": "Spanish",
-  "ita": "Italian",
-  "por": "Portuguese",
-  "rus": "Russian",
-  "jpn": "Japanese",
-  "chi": "Chinese",
-  "ara": "Arabic",
-  "hin": "Hindi",
-  "kor": "Korean",
-  "lat": "Latin",
-  "swe": "Swedish",
-  "nor": "Norwegian",
-  "dan": "Danish",
-  "fin": "Finnish",
-  "tur": "Turkish",
-  "heb": "Hebrew",
-  "pol": "Polish",
-  "ces": "Czech",
-  "ell": "Greek",
-  // Add more codes as needed
+  eng: 'English',
+  fre: 'French',
+  spa: 'Spanish',
+  ger: 'German',
+  ita: 'Italian',
+  hin: 'Hindi',
+  jpn: 'Japanese',
+  chi: 'Chinese',
+  rus: 'Russian',
+  por: 'Portuguese',
+  ara: 'Arabic',
+  dut: 'Dutch',
+  swe: 'Swedish',
+  nor: 'Norwegian',
+  dan: 'Danish',
+  fin: 'Finnish',
+  pol: 'Polish',
+  tur: 'Turkish',
+  kor: 'Korean',
+  tha: 'Thai',
+  vie: 'Vietnamese',
+  ukr: 'Ukrainian',
+  cze: 'Czech',
+  hun: 'Hungarian',
+  gre: 'Greek',
+  heb: 'Hebrew',
+  lat: 'Latin'
 };
+
+
+
