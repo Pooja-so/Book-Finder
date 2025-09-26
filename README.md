@@ -49,6 +49,36 @@ It allows users to explore the **Open Library** database, search books by **titl
   Built with **Vite** and **React**, ensuring quick load times and smooth interactions.
 
 ---
+## Folder Structure
+```bash
+Book-Finder/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   ├── context/
+│   │   └── BookContext.jsx
+│   ├── hooks/
+│   │   └── useBookSearch.js
+│   ├── components/
+│   │   ├── SearchBar.jsx
+│   │   ├── BookList.jsx
+│   │   ├── BookCard.jsx
+│   │   └── Spinner.jsx
+│   ├── pages/
+│   │   └── Home.jsx
+│   ├── utils/
+│   │   └── constants.js
+│   └── styles/
+│       └── (if you have custom CSS or tailwind config overrides)
+├── README.md
+├── package.json
+├── tailwind.config.js
+├── vite.config.js
+└── node_modules/
+```
+---
 
 ## ⚡ Getting Started
 
