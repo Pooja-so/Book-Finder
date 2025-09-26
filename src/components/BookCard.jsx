@@ -24,7 +24,8 @@ const BookCard = ({ book }) => {
 
   const readbleLanguages = language?.map((code) => languageMap[code] || code);
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center">
+    <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center
+    ">
       <img
         src={coverUrl}
         alt={title}

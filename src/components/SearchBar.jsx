@@ -43,7 +43,7 @@ const SearchBar = () => {
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-1 text-sm"
+          className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-1 text-sm cursor-pointer"
         >
           <Search size={16} /> Search
         </button>
@@ -52,7 +52,7 @@ const SearchBar = () => {
         <button
           type="button"
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-1 text-gray-700 px-3 py-2 border rounded-lg hover:bg-gray-100 text-sm"
+          className="flex items-center gap-1 text-gray-700 px-3 py-2 border rounded-lg hover:bg-gray-100 text-sm cursor-pointer"
         >
           <Sliders size={16} /> Filters
         </button>
@@ -70,13 +70,22 @@ const SearchBar = () => {
               placeholder="First publish year"
               className="border rounded-lg px-3 py-2 w-1.2/3 text-sm focus:ring-2 focus:ring-blue-500"
             />
-            <input
-              type="text"
+            {/* Language Dropdown */}
+            <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
-              placeholder="Language code (eng, fre)"
-              className="border rounded-lg px-3 py-2 w-1.2/3 text-sm focus:ring-2 focus:ring-blue-500"
-            />
+              className="border rounded-lg px-3 py-2 w-40 text-sm focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            >
+              <option value="">Select language</option>
+              <option value="eng">English</option>
+              <option value="fre">French</option>
+              <option value="spa">Spanish</option>
+              <option value="ger">German</option>
+              <option value="ita">Italian</option>
+              <option value="hin">Hindi</option>
+              <option value="jpn">Japanese</option>
+              <option value="chi">Chinese</option>
+            </select>
           </div>
 
           {/* Row 2: Full-text checkbox */}
