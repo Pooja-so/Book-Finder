@@ -12,6 +12,7 @@ import { useBookSearch } from "../hooks/useBookSearch";
 export const BookContext = createContext();
 
 export const BookProvider = ({ children }) => {
+  // 1. Manages states
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ export const BookProvider = ({ children }) => {
   // Hook provides reusable search logic
   const { searchBooks } = useBookSearch(setBooks, setLoading, setError, toast);
 
-  // Clear previous search results and errors
+  // 3. Clear previous search results and errors
   const clearResults = () => {
     setBooks([]);
     setError(null);

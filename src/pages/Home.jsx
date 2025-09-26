@@ -11,8 +11,8 @@ import BookList from "../components/BookList";
 const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Enhanced Header with glass-morphism effect */}
-      <header className="bg-white/80 backdrop-blur-lg border-b border-gray-200 sticky top-0 z-50">
+      {/* 1. Header with Gradient-text effect */}
+      <header className="bg-white/8 Header with gra0 backdrop-blur-lg border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -25,15 +25,15 @@ const Home = () => {
         </div>
       </header>
 
-      {/* Search Section with enhanced spacing */}
+      {/* 2. Search Section to serach books*/}
       <SearchBar />
 
-      {/* Main content area with improved styling */}
+      {/* 3. Main content area to display search results */}
       <main>
         <BookList />
       </main>
 
-      {/* Footer with glass-morphism effect */}
+      {/* 4. Footer shows with glass-morphism effect */}
       <footer className="bg-white/80 backdrop-blur-lg border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 py-8 text-center text-gray-600">
           <p>Powered by Open Library API </p>

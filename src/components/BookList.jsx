@@ -13,10 +13,10 @@ import { Book } from "lucide-react";
 const BookList = () => {
   const { books, loading, error } = useContext(BookContext);
 
-  // Show spinner while loading
+  // 1. loading state: Show spinner while loading
   if (loading) return <Spinner />;
 
-  // Show error state with styled error message
+  // 2. Error state: Loss Internet Connection
   if (error) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
@@ -39,7 +39,7 @@ const BookList = () => {
     );
   }
 
-  // Show enhanced empty state when no books found
+  // 3. Empty Results: Show enhanced empty state as intial state
   if (!books || books.length === 0) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
@@ -66,7 +66,7 @@ const BookList = () => {
     );
   }
 
-  // Render books in enhanced responsive grid
+  // 4. Search Results: Render books in a responsive  layout
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Results Header */}

@@ -20,9 +20,9 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
- // Validate input to avoid empty queries
+ // Input validation to avoid empty queries
  if (!query || !query.trim()) {
-  toast.error("Please enter a book title or author to start your search.");
+  toast.error("Please enter a book title or author name to start your search.");
   return;
 }
     searchBooks({
@@ -48,6 +48,7 @@ const SearchBar = () => {
             {/* Search Input with Icon */}
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              {/* 1. Search input element: Book title and author name for searching books*/}
               <input
                 type="text"
                 value={query}
@@ -58,7 +59,7 @@ const SearchBar = () => {
               />
             </div>
 
-            {/* Search Button with Gradient */}
+            {/* 2. Search Button with Gradient */}
             <button
               type="button"
               onClick={handleSubmit}
@@ -84,7 +85,7 @@ const SearchBar = () => {
           </div>
         </div>
 
-        {/* Advanced Filters Panel with Animation */}
+        {/* 3. Advanced Filters Panel with Animation */}
         {showFilters && (
           <div className="bg-white rounded-2xl border-2 border-gray-100 p-6 shadow-lg animate-in slide-in-from-top-2 duration-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
@@ -94,7 +95,7 @@ const SearchBar = () => {
 
             {/* Filter Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Publication Year Filter */}
+              {/* 3.a Publication Year Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Publication Year
@@ -110,7 +111,7 @@ const SearchBar = () => {
                 />
               </div>
 
-              {/* Language Filter */}
+              {/* 3.b. Language Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Language
@@ -133,7 +134,7 @@ const SearchBar = () => {
               </div>
             </div>
 
-            {/* Full-text Checkbox */}
+            {/* 3.c. Full-text Checkbox */}
             <div className="mt-4">
               <label className="flex items-center gap-3 text-sm font-medium text-gray-700 cursor-pointer p-3 rounded-xl hover:bg-gray-50 transition-colors">
                 <input
@@ -147,7 +148,7 @@ const SearchBar = () => {
               </label>
             </div>
 
-            {/* Clear Filters Button */}
+            {/* 4. Clear Filters Button */}
             <div className="mt-4 pt-4 border-t border-gray-200">
               <button
                 type="button"

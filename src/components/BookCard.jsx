@@ -16,8 +16,6 @@ const BookCard = ({ book }) => {
     first_publish_year,
     language,
     has_fulltext,
-    ratings_average,
-    ratings_count,
   } = book;
 
   // Enhanced cover image handling with better fallback
@@ -38,7 +36,7 @@ const BookCard = ({ book }) => {
 
   return (
     <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100">
-      {/* Cover Image with Enhanced Overlay Effects */}
+      {/* 1. Book Cover Image with hover Effects */}
       <div className="relative overflow-hidden">
         <img
           src={coverUrl}
@@ -53,19 +51,11 @@ const BookCard = ({ book }) => {
 
         {/* Enhanced Badges */}
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-          {/* Full-text Badge */}
+          {/* 2. Full-text Badge */}
           {has_fulltext && (
             <div className="bg-emerald-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-lg">
               <CheckCircle size={12} />
               <span className="hidden sm:inline">Full Text</span>
-            </div>
-          )}
-
-          {/* Rating Badge */}
-          {ratings_average && ratings_average > 0 && (
-            <div className="bg-amber-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 shadow-lg">
-              <Star size={12} fill="currentColor" />
-              {ratings_average.toFixed(1)}
             </div>
           )}
         </div>
@@ -73,12 +63,12 @@ const BookCard = ({ book }) => {
 
       {/* Enhanced Content Section */}
       <div className="p-5">
-        {/* Title with Improved Typography */}
+        {/* 3. Title with Improved Typography */}
         <h3 className="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors duration-200 leading-tight">
           {title || "Untitled"}
         </h3>
 
-        {/* Author Information */}
+        {/* 4. Author Information */}
         {author_name && author_name.length > 0 && (
           <p className="text-gray-600 mb-3 text-sm font-medium">
             by {author_name.slice(0, 2).join(", ")}
@@ -91,9 +81,8 @@ const BookCard = ({ book }) => {
           </p>
         )}
 
-        {/* Enhanced Metadata with Icons */}
         <div className="space-y-2 text-xs text-gray-500 mb-3">
-          {/* Publication Year */}
+          {/* 5. Publication Year */}
           {first_publish_year && (
             <div className="flex items-center gap-2">
               <Calendar size={14} className="text-indigo-400 flex-shrink-0" />
@@ -101,7 +90,7 @@ const BookCard = ({ book }) => {
             </div>
           )}
 
-          {/* Languages */}
+          {/* 6. Languages */}
           {readableLanguages && readableLanguages.length > 0 && (
             <div className="flex items-center gap-2">
               <Globe size={14} className="text-indigo-400 flex-shrink-0" />
@@ -109,16 +98,6 @@ const BookCard = ({ book }) => {
             </div>
           )}
 
-          {/* Rating Count */}
-          {ratings_count && ratings_count > 0 && (
-            <div className="flex items-center gap-2">
-              <Star size={14} className="text-amber-400 flex-shrink-0" />
-              <span>
-                {ratings_count.toLocaleString()} rating
-                {ratings_count !== 1 ? "s" : ""}
-              </span>
-            </div>
-          )}
         </div>
 
         {/* Interactive Elements (for future enhancement) */}
