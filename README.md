@@ -1,41 +1,40 @@
-# 📚 Book Finder
+# Book Finder
 
-**Book Finder** is a modern, responsive **book search web application** built with React and Tailwind CSS.  
-It allows users to explore the Open Library database, search for books by **title** or **author**, and refine results with **advanced filters** such as **publish year**, **language**, and **full-text availability**.  
-The app provides a clean UI, smooth interactions, and an intuitive browsing experience.
-
----
-
-## 🌐 Deployed Link
-[🔗 Live Demo](https://lvzv6f-5173.csb.app/)  
+Book Finder is a **modern and responsive book search web application** built with [React](https://react.dev/) and [Tailwind CSS](https://tailwindcss.com/).  
+It allows users to explore the **Open Library** database, search books by **title** or **author**, and refine results using **advanced filters** like publish year, language, and full-text availability.
 
 ---
 
-## 🛠 Tech Stack
+## 🌐 Live Demo
+[Book Finder – Try It Here](https://lvzv6f-5173.csb.app/)
+
+---
+
+## 🚀 Tech Stack
 - **Frontend:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (with utility-first classes)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **State Management:** React Context API
 - **Notifications:** [React Toastify](https://fkhadra.github.io/react-toastify/)
 - **Icons:** [Lucide React](https://lucide.dev/)
-- **API:** [Open Library Search API](https://openlibrary.org/developers/api)
+- **API:** [Open Library Search API](https://openlibrary.org/developers/api) *(no API key required)*
 
 ---
 
-## ✨ Main Features
-- 🔎 **Search Books:** Find books by **title** or **author** using the Open Library API.  
-- 🧩 **Advanced Filters:**  
-  - Filter results by **First Publish Year**  
-  - Search by **Language Code** (e.g., `eng` for English, `fre` for French)  
-  - Option to show **Full-Text Available** books only  
-- 📖 **Book List Display:**  
-  - Responsive grid layout displaying book cover, title, authors, language, and publication year.  
-  - Graceful fallback when cover images are missing.  
-- ⚡ **Responsive UI:** Optimized for both mobile and desktop devices.
-- 🔔 **Error Handling:** Toast notifications for empty queries, network errors, or no results.
+## ✨ Features
+- **Book Search:** Search by **title** or **author** using real-time results.
+- **Advanced Filters:**
+  - Filter by **First Publish Year**
+  - Search by **Language** (e.g.,  English, French, Germany)
+  - Option to display only **Full-Text Available** books
+- **Book List Display:**
+  - Responsive grid with book cover, title, authors, language, and publication year
+  - Graceful fallback for missing cover images
+- **Responsive UI:** Optimized for desktop and mobile devices
+- **Error Handling:** Toast notifications for empty queries, network issues, or no results
 
 ---
 
-## ⚡ Installation and Setup
+## ⚡ Getting Started
 
 Follow these steps to run the app locally:
 
