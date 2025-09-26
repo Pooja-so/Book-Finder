@@ -21,16 +21,32 @@ It allows users to explore the **Open Library** database, search books by **titl
 ---
 
 ## ✨ Features
-- **Book Search:** Search by **title** or **author** using real-time results.
-- **Advanced Filters:**
-  - Filter by **First Publish Year**
-  - Search by **Language** (e.g.,  English, French, Germany)
-  - Option to display only **Full-Text Available** books
-- **Book List Display:**
-  - Responsive grid with book cover, title, authors, language, and publication year
-  - Graceful fallback for missing cover images
-- **Responsive UI:** Optimized for desktop and mobile devices
-- **Error Handling:** Toast notifications for empty queries, network issues, or no results
+
+- **Smart Book Search:**  
+  Search for books by **title** or **author** with instant results powered by the Open Library API.
+
+- **Dynamic Filters:**  
+  Refine search results with multiple filter options:
+  - **First Publish Year:** Narrow results by a specific publication year.
+  - **Language Selection:** Choose from a curated dropdown of popular languages (e.g., English, French, German).
+  - **Full-Text Availability:** Toggle to display only books with full online text.
+
+- **Interactive Book Display:**  
+  - Responsive card-based grid showing **cover image**, **title**, **authors**, **language**, and **publish year**.  
+  - Hover effects reveal subtle highlights for improved interactivity.  
+  - Automatic fallback for books without cover images.
+
+- **Responsive & Accessible UI:**  
+  Optimized layouts for desktop, tablet, and mobile devices to ensure a seamless browsing experience.
+
+- **Robust State Management:**  
+  Centralized global state using **React Context API** to manage search results, filters, loading states, and error handling.
+
+- **Real-Time Feedback:**  
+  Toast notifications (via **React Toastify**) for empty inputs, network errors, or no matching results to keep users informed.
+
+- **Fast & Lightweight:**  
+  Built with **Vite** and **React**, ensuring quick load times and smooth interactions.
 
 ---
 
